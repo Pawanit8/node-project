@@ -3,7 +3,7 @@ const pool=require('../database/db')
 
 async function createCityTable() {
     const createCityTableQuery = `
-      CREATE TABLE IF NOT EXISTS city (
+      CREATE TABLE IF NOT EXISTS cities (
         id SERIAL PRIMARY KEY,
         stateId INTEGER,
         name VARCHAR(100) NOT NULL,

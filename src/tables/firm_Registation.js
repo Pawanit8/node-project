@@ -2,7 +2,7 @@ const pool =require('../database/db')
 
 async function create_FirmReg_table(){
 const createUserTableQuery = `
-CREATE TABLE IF NOT EXISTS firm_reg (
+CREATE TABLE IF NOT EXISTS firms_reg (
   id SERIAL PRIMARY KEY,
   userId INT,
   firm_name VARCHAR(100),

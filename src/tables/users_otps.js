@@ -2,7 +2,7 @@ const pool = require('../database/db');
 
 
 async function otpGenrateTable() {
-  const table=`CREATE TABLE IF NOT EXISTS user_otps (
+  const table=`CREATE TABLE IF NOT EXISTS users_otps (
     id SERIAL PRIMARY KEY,
     userId INT,
     otp varchar(10),

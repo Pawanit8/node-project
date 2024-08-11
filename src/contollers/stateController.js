@@ -2,7 +2,7 @@ const pool = require('../database/db')
 class stateController{
     getState=async(req,res)=>{
         try {
-            const result=await pool.query(`select * from state`)
+            const result=await pool.query(`select * from states`)
             if(result){
                 res.send({code:200,data:result.rows,msg:'get data successfully'})
             }
@@ -21,7 +21,7 @@ class stateController{
     addState=async(req,res)=>{
         try {
             const {name}=req.body;
-            const query=`insert into state (name,created_at) values('${name}',now())`;
+            const query=`insert into states (name,created_at) values('${name}',now())`;
             const result=await pool.query(query)
             console.log("🚀 ~ stateController ~ addState=async ~ result:", result)
             if(result){
@@ -39,8 +39,8 @@ class stateController{
 
     updateState=async(req,res)=>{
        try{
-        const {state}=req.body;
-        const updateQuery = ` UPDATE state SET name = '${name}' WHERE id = '${id}'
+        const {id,name}=req.body;
+        const updateQuery = ` UPDATE states SET name = '${name}' WHERE id = '${id}'
                     returning name`;
         const result=await pool.query(updateQuery)
         if(result){
@@ -61,7 +61,7 @@ class stateController{
     deleteState = async(req,res)=>{
      //   try{
         const {id} =req.body;
-        const query =`DELETE from state where id='${id}'`;
+        const query =`DELETE from states where id='${id}'`;
         const result =await pool.query(query)
         if(result){
             res.send({code:200,data:result.rows,msg:'state is deleted'})

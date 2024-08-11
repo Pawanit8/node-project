@@ -1,9 +1,9 @@
 const pool =require('../database/db');
 
-class Citycontroller{
+class Citiescontroller{
     getCity=async(req,res)=>{
        // try {
-            const result=await pool.query(`select city.id,city.name as city_name,stateId,state.name  from city inner join state on state.id=city.stateId`);
+            const result=await pool.query(`select city.id,city.name as city_name,stateId,state.name  from cities inner join state on state.id=cities.stateId`);
             if(result){
                 console.log("🚀 ~ Citycontroller ~ getCity=async ~ result:", result)
                 
@@ -21,7 +21,7 @@ class Citycontroller{
     addCity=async(req,res)=>{
       //  try {
             const {stateId,name} =req.body;
-            const query=`insert into city(stateId,name,created_at)values ('${stateId}','${name}',now())`;
+            const query=`insert into cities(stateId,name,created_at)values ('${stateId}','${name}',now())`;
             const result=await pool.query(query)
             if(result){
                 res.send({code:200,data:result.rows,msg:'city added successfully'})
@@ -36,7 +36,7 @@ class Citycontroller{
     updateCity=async(req,res)=>{
         try {
             const {id,name}=req.body;
-            const qry=`update city set name ='${name}' where id='${id}'`;
+            const qry=`update cities set name ='${name}' where id='${id}'`;
             const result=await pool.query(qry)
             if(result){
                 res.send({code:200,data:result.rows,msg:'city updated successfully'})
@@ -53,7 +53,7 @@ class Citycontroller{
     deleteCity=async(req,res)=>{
         try {
             const {id}=req.body;
-            const deleteqry=`delete from city where id='${id}' `;
+            const deleteqry=`delete from cities where id='${id}' `;
             const result=await pool.query(deleteqry)
             if(result){
                 res.send({code:200,data:result.rows,msg:'city deleted successfully'})
@@ -69,4 +69,4 @@ class Citycontroller{
 
 
 }
-module.exports=new Citycontroller;
+module.exports=new Citiescontroller;

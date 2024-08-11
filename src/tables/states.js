@@ -3,7 +3,7 @@ const pool=require('../database/db')
 
 async function createStateTable() {
     const createStateTableQuery = `
-      CREATE TABLE IF NOT EXISTS state (
+      CREATE TABLE IF NOT EXISTS states (
         id SERIAL PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
